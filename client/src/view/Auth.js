@@ -1,8 +1,11 @@
 import LoginForm from '../components/auth/LoginForm'
 import RegisterForm from '../components/auth/RegisterForm'
 
+
+
 const Auth = ({ authRoute }) => {
-    return (
+    let body
+    body = (
         <>
             {
                 authRoute === 'login' && <LoginForm />
@@ -11,6 +14,17 @@ const Auth = ({ authRoute }) => {
                 authRoute === 'register' && <RegisterForm />
             }
         </>
+    )
+
+    return (
+        <div className="landing">
+            <div className="dark-overlay">
+                <div className="landing-inner">
+                <h1>LearnIt</h1>
+                {body}
+                </div>
+            </div>
+        </div>
     )
 }
 
