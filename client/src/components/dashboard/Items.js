@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {useSelecor} from 'react-redux'
+import {todosSelector} from '../../store/index'
 
 const Items = props => {
     const input = props.props.completed ? { color: "red" } : { color: "blue" }

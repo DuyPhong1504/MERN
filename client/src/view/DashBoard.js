@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Items from '../components/dashboard/Items'
 import Header from '../components/dashboard/Header'
 import axios from 'axios'
+import { todosSelector } from '../store/reducerss/ItemsSlice'
+import { useSelector } from 'react-redux'
+
 
 const DashBoard = () => {
     const arr = [{ id: 1, title: 'first', completed: false }, { id: 2, title: 'second', completed: false }, { id: 3, title: 'third', completed: false }]
@@ -37,14 +40,16 @@ const DashBoard = () => {
         setstate(newTodos)
     }
 
-    const addJob = title => {
-        const newTodos = [
-            ...state,
-            { id: state[state.length - 1].id + 1, title, completed: false }
-        ]
+    const todos = useSelector(todosSelector)
 
-        setstate(newTodos)
-    }
+    // const addJob = title => {
+    //     const newTodos = [
+    //         ...state,
+    //         { id: state[state.length - 1].id + 1, title, completed: false }
+    //     ]
+
+    //     setstate(newTodos)
+    // }
 
     return (
         <div className='text-center'>
@@ -52,11 +57,19 @@ const DashBoard = () => {
             <h1 className="text-success">List the job</h1>
             <div className="container">
                 <div class="row">
+                    {todos.map(index => {
+                        return <Items key={index.id} props={index} markComplete={markComplete} removeJob={removeJob}  ></Items>
+                    })}
+                </div>
+            </div>
+            <div className="container">
+                <div class="row">
                     {state.map(index => {
                         return <Items key={index.id} props={index} markComplete={markComplete} removeJob={removeJob}  ></Items>
                     })}
                 </div>
             </div>
+            
         </div>
     )
 }
