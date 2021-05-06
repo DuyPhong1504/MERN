@@ -5,6 +5,7 @@ import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from './constants'
 import axios from 'axios'
 
 
+
 export const AuthContext = createContext()
 
 
@@ -14,6 +15,13 @@ const AuthContextProvider = ({ children }) => {
         isAuthenticated: false,
         user: null
     })
+
+    // //authenticate user
+    // const loadUser = async()=>{
+    //     if(localStorage[LOCAL_STORAGE_TOKEN_NAME]){
+    //         setAuthToken(localStorage[LOCAL_STORAGE_TOKEN_NAME])
+    //     }
+    // }
 
 
     // Login
